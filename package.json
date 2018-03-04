@@ -1,0 +1,22 @@
+{
+	"name": "podcaster-hyperapp",
+	"version": "1.0.0",
+	"description": "Podcasts explorer application built with Hyperapp",
+	"main": "index.html",
+	"scripts": {
+		"start": "parcel index.html --open",
+		"build": "parcel build index.html"
+	},
+	"dependencies": {
+		"@hyperapp/logger": "0.4.1",
+		"hyperapp": "1.1.2",
+		"lscache": "1.1.0"
+	},
+	"devDependencies": {
+		"parcel-bundler": "1.6.1",
+		"babel-plugin-transform-object-rest-spread": "6.26.0",
+		"babel-plugin-transform-react-jsx": "6.24.1",
+		"babel-preset-env": "1.6.1"
+	},
+	"keywords": []
+}
