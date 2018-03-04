@@ -23,6 +23,7 @@ const appActions = {
 						data,
 						params: urlParams
 					});
+					window.scrollTo(0, 0);
 				})
 				.catch(error => {
 					console.error(`Error trying to navigate: ${error}`);
