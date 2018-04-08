@@ -1,4 +1,8 @@
+import { location } from '@hyperapp/router';
+
 const state = {
+	location: location.state,
+
 	router: {
 		currentComponent: null,
 		url: '/',
@@ -7,6 +11,7 @@ const state = {
 	},
 	isLoading: false,
 
+	originalPodcasts: [],
 	filter: null,
 	filteredPodcasts: null,
 	currentPodcast: null

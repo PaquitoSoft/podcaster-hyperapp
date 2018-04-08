@@ -1,10 +1,11 @@
 import { h } from 'hyperapp';
+import { Link } from '@hyperapp/router';
 
 function PodcastSummary({ podcast }) {
 	return (
 		<div className="podcast-summary">
 			<div className="box">
-				<a href={`/podcast/${podcast.id}`}>
+				<Link to={`/podcast/${podcast.id}`}>
 					<div className="box-icon">
 						<img src={podcast.cover} alt={podcast.name} />
 					</div>
@@ -17,7 +18,7 @@ function PodcastSummary({ podcast }) {
 								</span>
 							</p>
 						</div>
-				</a>
+				</Link>
 			</div>
 		</div>
 	);

@@ -84,8 +84,8 @@ export function getPodcastDetail(podcastId) {
       .then(values => {
         const [podcasts, feedUrl] = values;
 
-        // getXml(`${BASE_CORS_URL}${feedUrl}`, { ttl: 60 * 24 }) // ttl in minutes
-        getXml(`${BASE_CORS_URL}${feedUrl}`)
+        getXml(`${BASE_CORS_URL}${feedUrl}`, { ttl: 60 * 24 }) // ttl in minutes
+        // getXml(`${BASE_CORS_URL}${feedUrl}`)
           .then(doc => {
             const podcast = podcasts.find(podcast => podcast.id == podcastId);
             podcast.episodes = createPodcastEpisodes(doc, podcast.id);

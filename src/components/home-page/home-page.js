@@ -3,13 +3,13 @@ import { getAllPodcasts } from '../../api/podcaster';
 
 import PodcastSummary from './podcast-summary';
 
-function HomePage({ state, actions }) {
-	const podcasts = state.router.data;
+function HomePage({ state, actions, location, match }) {
 	const filter = state.filter;
-	const filteredPodcasts = state.filteredPodcasts || [...podcasts];
-
+	const { originalPodcasts } = state;
+	const filteredPodcasts = state.filteredPodcasts || originalPodcasts; 
+	
 	return (
-		<div class="podcasts-grid">
+		<div class="home-page podcasts-grid" oncreate={() => { actions.loadAllPodcasts() }}>
 			<div class="filter">
 				<span class="badge">{filteredPodcasts.length}</span>
 				<input
@@ -21,7 +21,7 @@ function HomePage({ state, actions }) {
 					onkeyup={e => {
 						actions.filterPodcasts({
 							filter: e.target.value,
-							podcasts
+							podcasts: originalPodcasts
 						});
 					}}
 				/>
@@ -32,9 +32,5 @@ function HomePage({ state, actions }) {
 		</div>
 	);
 }
-
-HomePage.dataLoader = function() {
-	return getAllPodcasts();
-};
 
 export default HomePage;

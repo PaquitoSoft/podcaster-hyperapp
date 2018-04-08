@@ -1,6 +1,11 @@
+import { location } from '@hyperapp/router';
+import { getAllPodcasts, getPodcastDetail } from '../api/podcaster';
+
 import config from '../config/routing-config';
 
 const appActions = {
+	location: location.actions,
+
 	navigate: url => (state, actions) => {
 		const routeConfig = config.find(configItem =>
 			configItem.pattern.test(url)
@@ -49,6 +54,26 @@ const appActions = {
 			router: routerState,
 			isLoading: false
 		};
+	},
+
+	updateOriginalPodcastList: (originalPodcasts) => state => {
+		return { originalPodcasts };
+	},
+
+	loadAllPodcasts: () => (state, actions) => {
+		getAllPodcasts()
+			.then(actions.updateOriginalPodcastList)
+			.catch(error => console.error(error));
+	},
+
+	updatePodcastDetail: (podcast) => (state, actions) => {
+		return { currentPodcast: podcast };
+	},
+
+	loadPodcastDetail: (podcastId) => (state, actions) => {
+		getPodcastDetail(podcastId)
+			.then(actions.updatePodcastDetail)
+			.catch(error => console.error(error));
 	},
 
 	filterPodcasts: ({ filter = '', podcasts = [] }) => state => {

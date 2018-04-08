@@ -15,11 +15,16 @@ function renderEpisodes(podcast) {
 	));
 }
 
-function PodcastPage({ state }) {
-	const podcast = state.router.data;
+function PodcastPage({ state, actions, location, match }) {
+	const podcast = { episodes: [] };
+	console.log('-----', match);
+	console.log(location);
+	console.log(actions);
+	console.log(state);
+	
 
 	return (
-		<div className="podcast-detail-page page-with-sidebar">
+		<div className="podcast-detail-page page-with-sidebar" oncreate={() => { actions.loadPodcastDetail(match.params.podcastId)}}>
 			<section className="sidebar-section">
 				<Sidebar podcast={podcast} />
 			</section>
